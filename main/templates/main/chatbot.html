@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chat with GPT-2!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="user_input">
+        <input type="submit" value="Send">
+    </form>
+    <p>{{ chatbot_response }}</p>
+</body>
+</html>

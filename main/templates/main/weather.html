@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Weather</title>
+        <link rel="stylesheet" href="/static/weather.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <div class="navigation">
+        <ul>
+            <li class="list">
+                <a href="{% url 'settings' %}">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="{% url 'weather' %}">
+                    <span class="icon">
+                        <ion-icon name="cloudy-outline"></ion-icon>
+                    </span>
+                    <span class="text">Weather</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{% url 'home' %}">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="text">Massages</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="at-outline"></ion-icon>
+                    </span>
+                    <span class="text">Support</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink(){
+            list.forEach((item) =>
+                item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <div class="container_info">
+        <div class="container_search">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input_box">
+                    {{ form.name }}
+                    <input type="submit"  name="" value="Add City">
+                </div>
+            </form>
+        </div>
+        <div class="container_content">
+            <div class="info">
+                {% for weather in weather_data %}
+                <div class="box_content">
+                    <div class="image">
+                        <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                        <div class="content">
+                            <p>
+                                <span class="title">{{ weather.city }}</span>
+                                <br>
+                                <span class="subtitle">{{ weather.temperature }}° F</span>
+                                <br><h4>Humidity: {{weather.humidity}}</h4>
+                                <br><h4>Pressure: {{weather.pressure}}</h4>
+                                <br><h4>Wind Speed: {{weather.windspeed}}</h4>
+                                <br> {{ weather.description }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

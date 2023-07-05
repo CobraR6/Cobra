@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <link rel="stylesheet" href="/static/weather.css">
+</head>
+<body><div class="navigation">
+        <ul>
+            <li class="list active">
+                <a href="{% url 'settings' %}">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{% url 'weather' %}">
+                    <span class="icon">
+                        <ion-icon name="cloudy-outline"></ion-icon>
+                    </span>
+                    <span class="text">Weather</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{% url 'home' %}">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="text">Massages</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="at-outline"></ion-icon>
+                    </span>
+                    <span class="text">Support</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+<script>
+        const list = document.querySelectorAll('.list');
+        function activeLink(){
+            list.forEach((item) =>
+                item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <select id="select-browser">
+      <option value="yandex">Яндекс</option>
+      <option value="google">Google</option>
+      <option value="you">You</option>
+    </select>
+    <button> onclick="search()</button>
+    <script>
+    function search():
+        var selectedBrowser = document.getElementById("select-browser").value;
+        var searchQuery = prompt("Введите запрос для поиска:");
+        if (searchQuery !== "") {
+            switch (selectedBrowser) {
+                case "yandex.ru":
+                    window.open("https://yandex.ru/search/?text=" + searchQuery);
+                    break;
+                case "google,com":
+                    window.open("https://www.google.com/search?q=" + searchQuery);
+                    break;
+                case "you.com":
+                    window.open("https://www.google.com/results?search_query=" + searchQuery);
+                    break;
+                default:
+                    alert("Выберите браузер для поиска");
+            }
+          } else {
+            alert("Введите запрос для поиска");
+          }
+        }
+    </script>
+</body>
+</html>

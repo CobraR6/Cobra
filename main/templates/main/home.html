@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cobra</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="navigation">
+        <ul>
+            <li class="list">
+                <a href="{% url 'settings' %}">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="{% url 'weather' %}">
+                    <span class="icon">
+                        <ion-icon name="rainy-outline"></ion-icon>
+                    </span>
+                    <span class="text">Weather</span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="{% url 'home' %}">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="text">Massages</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="at-outline"></ion-icon>
+                    </span>
+                    <span class="text">Support</span>
+                </a>
+            </li>
+            <div class="indicator"></div>
+        </ul>
+    </div>
+    <section>
+        <div class="main">
+            <img src="/static/Cobra.png" alt="">
+            <div class="searchBox">
+                <input type="text" class="search" placeholder="Search...">
+                <div class="icons">
+                    <div><img src="/static/search.png" alt=""></div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="searchbutton1">Google Search</button>
+                <button class="searchbutton2">Yandex Search</button>
+                <button class="searchbutton3">You Search</button>
+            </div>
+        </div>
+    </section>
+    <script>
+        let query = document.querySelector('.search');
+        let searchButton = document.querySelector('.searchbutton1');
+
+        searchButton.onclick = function (){
+            let url = 'https://www.google.com/search?q='+query.value;
+            window.open(url, '_self');
+        }
+    </script>
+    <script>
+        let query = document.querySelector('.search');
+        let searchButton = document.querySelector('.searchbutton2');
+
+        searchButton.onclick = function (){
+            let url = 'https://yandex.ru/search?q='+query.value;
+            window.open(url, '_self');
+        }
+    </script>
+    <script>
+        let query = document.querySelector('.search');
+        let searchButton = document.querySelector('.searchbutton3');
+
+        searchButton.onclick = function (){
+            let url = 'https://you.com/search?q='+query.value;
+            window.open(url, '_self');
+        }
+    </script>
+    <script>
+        const list = document.querySelectorAll('.list');
+        function activeLink(){
+            list.forEach((item) =>
+                item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
